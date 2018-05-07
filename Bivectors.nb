@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     23656,        520]
-NotebookOptionsPosition[     23179,        500]
-NotebookOutlinePosition[     23555,        516]
-CellTagsIndexPosition[     23512,        513]
+NotebookDataLength[     21399,        486]
+NotebookOptionsPosition[     20965,        467]
+NotebookOutlinePosition[     21341,        483]
+CellTagsIndexPosition[     21298,        480]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -21,12 +21,19 @@ Notebook[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{
-   RowBox[{"Options", "[", "BivectorPlot3D", "]"}], "=", 
+   RowBox[{"Options", "[", "Bivector", "]"}], "=", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"Based", "\[Rule]", "\"\<Mid\>\""}], ",", 
-     RowBox[{"Scaling", "\[Rule]", "\"\<Normal\>\""}], ",", 
      RowBox[{"ShowPoint", "\[Rule]", "False"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "BivectorPlot3D", "]"}], "=", 
+   RowBox[{"Append", "[", 
+    RowBox[{
+     RowBox[{"Options", "[", "Bivector", "]"}], ",", 
+     RowBox[{"Scaling", "\[Rule]", "\"\<Normal\>\""}]}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
@@ -34,79 +41,90 @@ Cell[BoxData[{
    "\"\<Incorrect option supplied\>\""}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
+   RowBox[{"Bivector", "[", 
+    RowBox[{"v1_", ",", "v2_", ",", "point_", ",", 
+     RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+   RowBox[{"(", 
+    RowBox[{"(*", 
+     RowBox[{"Draws", " ", "the", " ", "bivector"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"OptionValue", "[", "Based", "]"}], "\[Equal]", 
+        "\"\<Tail\>\""}], ",", 
+       RowBox[{"p", "=", "point"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"OptionValue", "[", "Based", "]"}], "\[Equal]", 
+          "\"\<Mid\>\""}], ",", 
+         RowBox[{"p", "=", 
+          RowBox[{"point", "-", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"v1", "+", "v2"}], ")"}], "/", "2"}]}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"OptionValue", "[", "Based", "]"}], "\[Equal]", 
+            "\"\<Tip\>\""}], ",", 
+           RowBox[{"p", "=", 
+            RowBox[{"point", "-", "v1", "-", "v2"}]}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Message", "[", 
+            RowBox[{"BivectorPlot3D", "::", "options"}], "]"}]}], "]"}]}], 
+        "]"}]}], "]"}], ";", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Arrowheads", "[", "Medium", "]"}], ",", 
+       RowBox[{"Arrow", "[", 
+        RowBox[{"{", 
+         RowBox[{"p", ",", 
+          RowBox[{"p", "+", "v1"}]}], "}"}], "]"}], ",", 
+       RowBox[{"Arrow", "[", 
+        RowBox[{"{", 
+         RowBox[{"p", ",", 
+          RowBox[{"p", "+", "v2"}]}], "}"}], "]"}], ",", 
+       RowBox[{"Arrow", "[", 
+        RowBox[{"BezierCurve", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"p", "+", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"v1", "+", "v2"}], ")"}], "/", "4"}]}], ",", 
+           RowBox[{"p", "+", "v1"}], ",", 
+           RowBox[{"p", "+", "v1", "+", "v2"}], ",", 
+           RowBox[{"p", "+", 
+            RowBox[{"v1", "/", "4"}], "+", 
+            RowBox[{"3", 
+             RowBox[{"v2", "/", "4"}]}]}]}], "}"}], "]"}], "]"}], ",", 
+       RowBox[{"Polygon", "[", 
+        RowBox[{"{", 
+         RowBox[{"p", ",", 
+          RowBox[{"p", "+", "v1"}], ",", 
+          RowBox[{"p", "+", "v1", "+", "v2"}], ",", 
+          RowBox[{"p", "+", "v2"}]}], "}"}], "]"}], ",", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"OptionValue", "[", "ShowPoint", "]"}], "\[Equal]", 
+          "True"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"Orange", ",", 
+           RowBox[{"Point", "[", "point", "]"}]}], "}"}]}], "]"}]}], "}"}]}], 
+    ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
    RowBox[{"BivectorPlot3D", "[", 
     RowBox[{"T_", ",", "xrange_", ",", "yrange_", ",", "zrange_", ",", 
-     RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+     RowBox[{"opts", ":", 
+      RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
    RowBox[{"(", "\[IndentingNewLine]", 
     RowBox[{
-     RowBox[{
-      RowBox[{"Bivector", "[", 
-       RowBox[{"v1_", ",", "v2_", ",", "point_"}], "]"}], ":=", 
-      RowBox[{"(", 
-       RowBox[{"(*", 
-        RowBox[{"Draws", " ", "the", " ", "bivector"}], "*)"}], 
-       "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{"If", "[", 
-         RowBox[{
-          RowBox[{
-           RowBox[{"OptionValue", "[", "Based", "]"}], "\[Equal]", 
-           "\"\<Tail\>\""}], ",", 
-          RowBox[{"p", "=", "point"}], ",", "\[IndentingNewLine]", 
-          RowBox[{"If", "[", 
-           RowBox[{
-            RowBox[{
-             RowBox[{"OptionValue", "[", "Based", "]"}], "\[Equal]", 
-             "\"\<Mid\>\""}], ",", 
-            RowBox[{"p", "=", 
-             RowBox[{"point", "-", 
-              RowBox[{
-               RowBox[{"(", 
-                RowBox[{"v1", "+", "v2"}], ")"}], "/", "2"}]}]}], ",", 
-            "\[IndentingNewLine]", 
-            RowBox[{"If", "[", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"OptionValue", "[", "Based", "]"}], "\[Equal]", 
-               "\"\<Tip\>\""}], ",", 
-              RowBox[{"p", "=", 
-               RowBox[{"point", "-", "v1", "-", "v2"}]}], ",", 
-              "\[IndentingNewLine]", 
-              RowBox[{"Message", "[", 
-               RowBox[{"BivectorPlot3D", "::", "options"}], "]"}]}], "]"}]}], 
-           "]"}]}], "]"}], ";", 
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{"Arrowheads", "[", "Medium", "]"}], ",", 
-          RowBox[{"Arrow", "[", 
-           RowBox[{"{", 
-            RowBox[{"p", ",", 
-             RowBox[{"p", "+", "v1"}]}], "}"}], "]"}], ",", 
-          RowBox[{"Arrow", "[", 
-           RowBox[{"{", 
-            RowBox[{"p", ",", 
-             RowBox[{"p", "+", "v2"}]}], "}"}], "]"}], ",", 
-          RowBox[{"Arrow", "[", 
-           RowBox[{"BezierCurve", "[", 
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{"p", "+", 
-               RowBox[{
-                RowBox[{"(", 
-                 RowBox[{"v1", "+", "v2"}], ")"}], "/", "4"}]}], ",", 
-              RowBox[{"p", "+", "v1"}], ",", 
-              RowBox[{"p", "+", "v1", "+", "v2"}], ",", 
-              RowBox[{"p", "+", 
-               RowBox[{"v1", "/", "4"}], "+", 
-               RowBox[{"3", 
-                RowBox[{"v2", "/", "4"}]}]}]}], "}"}], "]"}], "]"}], ",", 
-          RowBox[{"Polygon", "[", 
-           RowBox[{"{", 
-            RowBox[{"p", ",", 
-             RowBox[{"p", "+", "v1"}], ",", 
-             RowBox[{"p", "+", "v1", "+", "v2"}], ",", 
-             RowBox[{"p", "+", "v2"}]}], "}"}], "]"}]}], "}"}]}], ")"}]}], 
-     ";", "\[IndentingNewLine]", 
      RowBox[{"F", "=", 
       RowBox[{"Normal", "[", 
        RowBox[{"HodgeDual", "[", 
@@ -145,7 +163,7 @@ Cell[BoxData[{
          RowBox[{
           RowBox[{"OptionValue", "[", "Scaling", "]"}], "\[Equal]", 
           "\"\<Constant\>\""}], ",", "\[IndentingNewLine]", 
-         RowBox[{"span", "\[Equal]", 
+         RowBox[{"span", "=", 
           RowBox[{"0.75", "*", "span"}]}], ",", 
          RowBox[{"(*", 
           RowBox[{
@@ -155,40 +173,45 @@ Cell[BoxData[{
           RowBox[{"BivectorPlot3D", "::", "options"}], "]"}]}], "]"}]}], 
       "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"bivecs", "=", 
-      RowBox[{"Flatten", "@", 
-       RowBox[{"Table", "[", "\[IndentingNewLine]", 
-        RowBox[{
-         RowBox[{"Bivector", "@@", 
-          RowBox[{"Append", "[", "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{"Quiet", "[", 
-             RowBox[{
-              RowBox[{"Check", "[", 
-               RowBox[{
-                RowBox[{"If", "[", 
+      RowBox[{"Table", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Bivector", "@@", 
+         RowBox[{"Join", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Quiet", "[", 
+            RowBox[{
+             RowBox[{"Check", "[", 
+              RowBox[{
+               RowBox[{"If", "[", 
+                RowBox[{
                  RowBox[{
-                  RowBox[{
-                   RowBox[{"F", ".", 
-                    RowBox[{"Cross", "@@", "span"}]}], ">", "0"}], ",", 
-                  "span", ",", 
-                  RowBox[{"Reverse", "[", "span", "]"}]}], "]"}], ",", 
-                RowBox[{"{", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
-                  RowBox[{"{", 
-                   RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "}"}]}], "]"}],
-               ",", 
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"Power", "::", "infy"}], ",", 
-                RowBox[{"Infinity", "::", "indet"}], ",", 
-                RowBox[{"Det", "::", "mindet"}]}], "}"}]}], "]"}], ",", 
-            RowBox[{"(*", 
+                  RowBox[{"F", ".", 
+                   RowBox[{"Cross", "@@", "span"}]}], ">", "0"}], ",", "span",
+                  ",", 
+                 RowBox[{"Reverse", "[", "span", "]"}]}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "}"}]}], "]"}], 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Power", "::", "infy"}], ",", 
+               RowBox[{"Infinity", "::", "indet"}], ",", 
+               RowBox[{"Det", "::", "mindet"}]}], "}"}]}], "]"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{
              RowBox[{
              "Checks", " ", "whether", " ", "spanning", " ", "vectors", " ", 
               "are", " ", "in", " ", "the", " ", "right", " ", 
-              "orientation"}], "*)"}], "\[IndentingNewLine]", 
+              "orientation"}], ";", " ", 
+             RowBox[{
+             "Also", " ", "checks", " ", "for", " ", "singularities", " ", 
+              "in", " ", "span", " ", "that", " ", "may", " ", "result", " ", 
+              "from", " ", "NullSpace"}]}], "*)"}], "\[IndentingNewLine]", 
+           RowBox[{"{", 
             RowBox[{"{", 
              RowBox[{
               RowBox[{"xrange", "[", 
@@ -196,9 +219,14 @@ Cell[BoxData[{
               RowBox[{"yrange", "[", 
                RowBox[{"[", "1", "]"}], "]"}], ",", 
               RowBox[{"zrange", "[", 
-               RowBox[{"[", "1", "]"}], "]"}]}], "}"}]}], "]"}]}], ",", 
-         "\[IndentingNewLine]", "xrange", ",", "yrange", ",", "zrange"}], 
-        "]"}]}]}], ";", "\[IndentingNewLine]", 
+               RowBox[{"[", "1", "]"}], "]"}]}], "}"}], "}"}], ",", 
+           RowBox[{"Evaluate", "[", 
+            RowBox[{"FilterRules", "[", 
+             RowBox[{
+              RowBox[{"{", "opts", "}"}], ",", " ", 
+              RowBox[{"Options", "[", "Bivector", "]"}]}], "]"}], "]"}]}], 
+          "]"}]}], ",", "\[IndentingNewLine]", "xrange", ",", "yrange", ",", 
+        "zrange"}], "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"Graphics3D", "[", "bivecs", "]"}]}], ")"}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.733850399691537*^9, 3.733850499886126*^9}, {
    3.7338505343250647`*^9, 3.73385053639589*^9}, {3.7338505958371277`*^9, 
@@ -252,7 +280,20 @@ Cell[BoxData[{
    3.7344536414571276`*^9}, {3.7344549644232073`*^9, 
    3.7344550025546494`*^9}, {3.734455064753624*^9, 3.734455132492384*^9}, {
    3.7344551669259553`*^9, 3.734455184802085*^9}, {3.7344552774651814`*^9, 
-   3.7344553258336425`*^9}, {3.734455356994829*^9, 3.7344553631318645`*^9}}],
+   3.7344553258336425`*^9}, {3.734455356994829*^9, 3.7344553631318645`*^9}, 
+   3.7344654656966105`*^9, {3.7344655047766204`*^9, 3.7344655502765484`*^9}, {
+   3.7344656446659126`*^9, 3.7344657262855654`*^9}, {3.7344657688528924`*^9, 
+   3.734465777711033*^9}, {3.73446580786623*^9, 3.7344658444712524`*^9}, {
+   3.73446602791234*^9, 3.734466050952321*^9}, {3.7344780404218597`*^9, 
+   3.734478046085409*^9}, {3.7344841458158417`*^9, 3.734484154503149*^9}, {
+   3.73448418757855*^9, 3.734484232921632*^9}, {3.7344844750058365`*^9, 
+   3.7344845029617615`*^9}, {3.734484597902116*^9, 3.7344846309446526`*^9}, 
+   3.734484996222357*^9, {3.734485632753438*^9, 3.7344856437418814`*^9}, {
+   3.734700986597592*^9, 3.734700988425541*^9}, {3.7347010288989587`*^9, 
+   3.734701032271943*^9}, {3.7347011514600644`*^9, 3.734701221397024*^9}, {
+   3.734701303178649*^9, 3.7347013063233185`*^9}, {3.7347019112445183`*^9, 
+   3.7347019395430374`*^9}, {3.7347020372564993`*^9, 
+   3.7347020526241245`*^9}, {3.7347022863792725`*^9, 3.7347023310224743`*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -353,7 +394,9 @@ Cell[BoxData[
    3.7341918985599065`*^9, 3.7341920071283627`*^9}, {3.734192058632909*^9, 
    3.7341920589794135`*^9}, {3.734192174345803*^9, 3.7341922071343594`*^9}, {
    3.7341922953401146`*^9, 3.734192313589673*^9}, {3.734197634338105*^9, 
-   3.734197634522622*^9}, {3.7344555806086426`*^9, 3.7344555812905703`*^9}}],
+   3.734197634522622*^9}, {3.7344555806086426`*^9, 3.7344555812905703`*^9}, {
+   3.7344657448462186`*^9, 3.7344657492585125`*^9}, {3.7344661349709697`*^9, 
+   3.734466135251758*^9}}],
 
 Cell[BoxData[
  TagBox[
@@ -369,19 +412,19 @@ Cell[BoxData[
        Hold[$CellContext`d$$], 1}, 0.1, 2}, {{
        Hold[$CellContext`range$$], 3}, 1, 10}}, Typeset`size$$ = {
     396., {212., 218.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`a$2835367$$ = 
-    0, $CellContext`b$2835368$$ = 0, $CellContext`c$2835369$$ = 
-    0, $CellContext`d$2835370$$ = 0, $CellContext`range$2835371$$ = 0}, 
+    Typeset`skipInitDone$$ = True, $CellContext`a$2840896$$ = 
+    0, $CellContext`b$2840897$$ = 0, $CellContext`c$2840898$$ = 
+    0, $CellContext`d$2840899$$ = 0, $CellContext`range$2840900$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`a$$ = 1, $CellContext`b$$ = 
         1, $CellContext`c$$ = 1, $CellContext`d$$ = 1, $CellContext`range$$ = 
         3}, "ControllerVariables" :> {
-        Hold[$CellContext`a$$, $CellContext`a$2835367$$, 0], 
-        Hold[$CellContext`b$$, $CellContext`b$2835368$$, 0], 
-        Hold[$CellContext`c$$, $CellContext`c$2835369$$, 0], 
-        Hold[$CellContext`d$$, $CellContext`d$2835370$$, 0], 
-        Hold[$CellContext`range$$, $CellContext`range$2835371$$, 0]}, 
+        Hold[$CellContext`a$$, $CellContext`a$2840896$$, 0], 
+        Hold[$CellContext`b$$, $CellContext`b$2840897$$, 0], 
+        Hold[$CellContext`c$$, $CellContext`c$2840898$$, 0], 
+        Hold[$CellContext`d$$, $CellContext`d$2840899$$, 0], 
+        Hold[$CellContext`range$$, $CellContext`range$2840900$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -418,84 +461,8 @@ $CellContext`range$$, $CellContext`d$$}],
   Manipulate`InterpretManipulate[1]]], "Output",
  GeneratedCell->False,
  CellAutoOverwrite->False,
- CellChangeTimes->{
-  3.734191253444886*^9, 3.734191908423251*^9, {3.734191939518876*^9, 
-   3.734192007533633*^9}, {3.734192053069982*^9, 3.734192059570756*^9}, 
-   3.7341922086301317`*^9, 3.7341923142434406`*^9, 3.734197636187519*^9, 
-   3.7341984288720837`*^9, {3.7342067360738864`*^9, 3.734206736531878*^9}, 
-   3.734218022630022*^9, 3.734280352820247*^9, {3.7344554651029305`*^9, 
-   3.734455482346799*^9}, 3.7344555868707976`*^9, 3.734455719283078*^9}],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`a$$ = 1, $CellContext`b$$ = 
-    1, $CellContext`c$$ = 1, $CellContext`d$$ = 1, $CellContext`range$$ = 3, 
-    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
-    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
-    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[$CellContext`a$$], 1}, -5, 5}, {{
-       Hold[$CellContext`b$$], 1}, -5, 5}, {{
-       Hold[$CellContext`c$$], 1}, -5, 5}, {{
-       Hold[$CellContext`d$$], 1}, 0.1, 2}, {{
-       Hold[$CellContext`range$$], 3}, 1, 10}}, Typeset`size$$ = {
-    340., {166., 172.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`a$2834729$$ = 
-    0, $CellContext`b$2834730$$ = 0, $CellContext`c$2834731$$ = 
-    0, $CellContext`d$2834732$$ = 0, $CellContext`range$2834733$$ = 0}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, 
-      "Variables" :> {$CellContext`a$$ = 1, $CellContext`b$$ = 
-        1, $CellContext`c$$ = 1, $CellContext`d$$ = 1, $CellContext`range$$ = 
-        3}, "ControllerVariables" :> {
-        Hold[$CellContext`a$$, $CellContext`a$2834729$$, 0], 
-        Hold[$CellContext`b$$, $CellContext`b$2834730$$, 0], 
-        Hold[$CellContext`c$$, $CellContext`c$2834731$$, 0], 
-        Hold[$CellContext`d$$, $CellContext`d$2834732$$, 0], 
-        Hold[$CellContext`range$$, $CellContext`range$2834733$$, 0]}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, 
-      "Body" :> ($CellContext`P = $CellContext`a$$ 
-          TensorWedge[$CellContext`Y, $CellContext`Z] + $CellContext`b$$ 
-          TensorWedge[$CellContext`Z, $CellContext`X] + $CellContext`c$$ 
-          TensorWedge[$CellContext`X, $CellContext`Y]; Show[
-         $CellContext`BivectorPlot3D[$CellContext`P, {$CellContext`x, \
--$CellContext`range$$, $CellContext`range$$, $CellContext`d$$}, \
-{$CellContext`y, -$CellContext`range$$, $CellContext`range$$, \
-$CellContext`d$$}, {$CellContext`z, -$CellContext`range$$, \
-$CellContext`range$$, $CellContext`d$$}], 
-         ContourPlot3D[{$CellContext`x == 0, $CellContext`y == 
-           0, $CellContext`z == 
-           0}, {$CellContext`x, -$CellContext`range$$, $CellContext`range$$}, \
-{$CellContext`y, -$CellContext`range$$, $CellContext`range$$}, \
-{$CellContext`z, -$CellContext`range$$, $CellContext`range$$}]]), 
-      "Specifications" :> {{{$CellContext`a$$, 1}, -5, 
-         5}, {{$CellContext`b$$, 1}, -5, 5}, {{$CellContext`c$$, 1}, -5, 
-         5}, {{$CellContext`d$$, 1}, 0.1, 2}, {{$CellContext`range$$, 3}, 1, 
-         10}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{395., {279., 286.}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    SynchronousInitialization->True,
-    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- GeneratedCell->False,
- CellAutoOverwrite->False,
- CellChangeTimes->{
-  3.734191253444886*^9, 3.734191908423251*^9, {3.734191939518876*^9, 
-   3.734192007533633*^9}, {3.734192053069982*^9, 3.734192059570756*^9}, 
-   3.7341922086301317`*^9, 3.7341923142434406`*^9, 3.734197636187519*^9, 
-   3.7341984288720837`*^9, {3.7342067360738864`*^9, 3.734206736531878*^9}, 
-   3.734218022630022*^9, 3.734280352820247*^9, {3.7344554651029305`*^9, 
-   3.734455482346799*^9}, 3.7344555868707976`*^9}]
+ CellChangeTimes->{3.7344563271062346`*^9, 3.7344569590396533`*^9, 
+  3.7344657507933598`*^9, 3.734466136807027*^9, 3.7344749205050273`*^9}]
 }, Open  ]]
 },
 WindowSize->{1536, 781},
@@ -515,12 +482,11 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 11207, 234, 493, "Input"],
-Cell[11768, 256, 507, 15, 73, "Input"],
+Cell[558, 20, 13003, 275, 533, "Input"],
+Cell[13564, 297, 507, 15, 73, "Input"],
 Cell[CellGroupData[{
-Cell[12300, 275, 3245, 80, 113, "Input"],
-Cell[15548, 357, 3817, 69, 675, "Output"],
-Cell[19368, 428, 3795, 69, 583, "Output"]
+Cell[14096, 316, 3351, 82, 113, "Input"],
+Cell[17450, 400, 3499, 64, 675, "Output"]
 }, Open  ]]
 }
 ]
