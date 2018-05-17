@@ -1,0 +1,162 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5591,        154]
+NotebookOptionsPosition[      5036,        136]
+NotebookOutlinePosition[      5399,        152]
+CellTagsIndexPosition[      5356,        149]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Needs", "[", "\"\<Bivectors`\>\"", "]"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.735504655733344*^9, 3.735504665233858*^9}, {
+  3.735504736318653*^9, 3.73550474115829*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"8e18f89b-4b17-4f15-974c-9ff9e377d097"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"X", "=", 
+   RowBox[{"{", 
+    RowBox[{"x", " ", ",", "0", ",", "0"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Y", "=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "y", ",", "0"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Z", "=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "z"}], "}"}]}], ";"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.733967988274771*^9, 3.733968008062559*^9}, {
+  3.734141549654729*^9, 3.7341416023490534`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"d1fff837-6f54-4555-959d-75518b699c37"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"P", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"a", " ", 
+       RowBox[{"Y", "\[TensorWedge]", "Z"}]}], "+", 
+      RowBox[{"b", " ", 
+       RowBox[{"Z", "\[TensorWedge]", "X"}]}], "+", 
+      RowBox[{"c", " ", 
+       RowBox[{"X", "\[TensorWedge]", "Y"}]}]}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Show", "[", 
+     RowBox[{
+      RowBox[{"BivectorPlot3D", "[", 
+       RowBox[{"P", ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "range"}], ",", "range", ",", "d"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"y", ",", 
+          RowBox[{"-", "range"}], ",", "range", ",", "d"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"z", ",", 
+          RowBox[{"-", "range"}], ",", "range", ",", "d"}], "}"}]}], "]"}], 
+      ",", 
+      RowBox[{"ContourPlot3D", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"x", "\[Equal]", "0"}], ",", 
+          RowBox[{"y", "\[Equal]", "0"}], ",", 
+          RowBox[{"z", "\[Equal]", "0"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "range"}], ",", "range"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"y", ",", 
+          RowBox[{"-", "range"}], ",", "range"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"z", ",", 
+          RowBox[{"-", "range"}], ",", "range"}], "}"}]}], "]"}]}], "]"}]}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "1"}], "}"}], ",", 
+     RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"b", ",", "1"}], "}"}], ",", 
+     RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", ",", "1"}], "}"}], ",", 
+     RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"d", ",", "1"}], "}"}], ",", "0.1", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"range", ",", "3"}], "}"}], ",", "1", ",", "10"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.7339680494210367`*^9, 3.7339681100214453`*^9}, {
+   3.733968208829138*^9, 3.733968213068314*^9}, {3.734056442774686*^9, 
+   3.734056460072768*^9}, {3.734056943264323*^9, 3.734057051283386*^9}, {
+   3.734057169552868*^9, 3.734057176619729*^9}, {3.734109988338401*^9, 
+   3.7341100061670895`*^9}, {3.734110223614043*^9, 3.73411031275058*^9}, {
+   3.7341410026538315`*^9, 3.7341410086905203`*^9}, {3.7341416110374174`*^9, 
+   3.7341416321122*^9}, {3.734148299675155*^9, 3.7341483042910357`*^9}, {
+   3.7341488865204315`*^9, 3.7341489192433987`*^9}, {3.7341492353374367`*^9, 
+   3.7341492618734922`*^9}, 3.7341492986116033`*^9, {3.7341493340965157`*^9, 
+   3.7341493664627075`*^9}, {3.7341912025022306`*^9, 3.734191251580206*^9}, {
+   3.7341918985599065`*^9, 3.7341920071283627`*^9}, {3.734192058632909*^9, 
+   3.7341920589794135`*^9}, {3.734192174345803*^9, 3.7341922071343594`*^9}, {
+   3.7341922953401146`*^9, 3.734192313589673*^9}, {3.734197634338105*^9, 
+   3.734197634522622*^9}, {3.7344555806086426`*^9, 3.7344555812905703`*^9}, {
+   3.7344657448462186`*^9, 3.7344657492585125`*^9}, {3.7344661349709697`*^9, 
+   3.734466135251758*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"d796b8c8-0152-4dae-9091-cf473d2ec336"]
+},
+WindowSize->{1536, 809},
+WindowMargins->{{Automatic, 0}, {0, Automatic}},
+Magnification:>1.1 Inherited,
+FrontEndVersion->"11.3 for Linux x86 (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 424, 9, 79, "Input",ExpressionUUID->"8e18f89b-4b17-4f15-974c-9ff9e377d097",
+ InitializationCell->True],
+Cell[985, 31, 615, 18, 104, "Input",ExpressionUUID->"d1fff837-6f54-4555-959d-75518b699c37",
+ InitializationCell->True],
+Cell[1603, 51, 3429, 83, 136, "Input",ExpressionUUID->"d796b8c8-0152-4dae-9091-cf473d2ec336"]
+}
+]
+*)
+
