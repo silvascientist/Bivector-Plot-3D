@@ -11,9 +11,11 @@ Options[BivectorPlot3D]=Append[Options[Bivector],Scaling->"Normal"];
 BivectorPlot3D::options="Incorrect option supplied";
 Bivector[v1_,v2_,point_,OptionsPattern[]]:=((*Draws the bivector*)
 If[OptionValue[Based]=="Tail",p=point,
-If[OptionValue[Based]=="Mid",p=point-(v1+v2)/2,
-If[OptionValue[Based]=="Tip",p=point-v1-v2,
-Message[BivectorPlot3D::options]]]];{Arrowheads[Medium],Arrow[{p,p+v1}],Arrow[{p,p+v2}],Arrow[BezierCurve[{p+(v1+v2)/4,p+v1,p+v1+v2,p+v1/4+3v2/4}]],Polygon[{p,p+v1,p+v1+v2,p+v2}],If[OptionValue[ShowPoint]==True,{Orange,Point[point]}]});
+	If[OptionValue[Based]=="Mid",p=point-(v1+v2)/2,
+		If[OptionValue[Based]=="Tip",p=point-v1-v2,
+			Message[BivectorPlot3D::options]]]];
+{Arrowheads[0.02 CubeRoot[Norm[Cross[v1,v2]]]], (*This formula seems the most aesthetically pleasing*)
+	Arrow[{p,p+v1}],Arrow[{p,p+v2}],Arrow[BezierCurve[{p+(v1+v2)/4,p+v1,p+v1+v2,p+v1/4+3v2/4}]],Polygon[{p,p+v1,p+v1+v2,p+v2}],If[OptionValue[ShowPoint]==True,{Orange,Point[point]}]});
 BivectorPlot3D[T_,xrange_,yrange_,zrange_,opts:OptionsPattern[]]:=(
 F=Normal[HodgeDual[T,3]];
 span=Orthogonalize@NullSpace[{F}];(*Creates spanning vectors for the blade*)
@@ -31,6 +33,9 @@ xrange,yrange,zrange];
 Graphics3D[bivecs]);
 End[]
 EndPackage[]
+
+
+
 
 
 
